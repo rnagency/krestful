@@ -40,13 +40,13 @@ class Restful_Header extends Kohana_Http_Header {
 		$result = array();
 
 		// Sort values by quality
-		$this->sort_values_by_quality();
+		$header = $this;
 
 		// Match against accept criteria
-		array_walk($accept, function ($type, $values) use ( & $result, $this)
+		array_walk($accept, function ($type, $values) use ( & $result, $header)
 			{
 				if ($values AND $this->offsetExists($type)
-				            AND ($accept_header = $this[$type]))
+				            AND ($accept_header = $header[$type]))
 				{
 					if ($match = Valid::match_accept_headers($values, $accept_header))
 					{
